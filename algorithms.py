@@ -1,18 +1,25 @@
 def bubble_sort(arr):
     n = len(arr)
+    steps = [arr.copy()]  # Save initial state
+    comparisons = 0
+    swaps = 0
 
     for i in range(n - 1):
         for j in range(0, n - 1 - i):
+            comparisons += 1
             if arr[j] > arr[j + 1]:
-                temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swaps += 1
+                steps.append(arr.copy())  # Save state after swap
 
-    return arr
+    return {
+        "sorted_array": arr,
+        "steps": steps,
+        "comparisons": comparisons,
+        "swaps": swaps
+    }
 
-
-numbers = [64, 34, 25, 12, 22, 11, 90]
-
-sorted_numbers = bubble_sort(numbers)
-
-print("Sorted array:", sorted_numbers)
+if __name__ == "__main__":
+    numbers = [64, 34, 25, 12, 22, 11, 90]
+    result = bubble_sort(numbers)
+    print("Result:", result)
