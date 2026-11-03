@@ -44,5 +44,5 @@ def run_quick_sort(data: ArrayInput):
     return quick_sort(data.numbers.copy())
 
 @app.post("/search/binary")
-def run_binary_search(data: ArrayInput):
+def run_binary_search(data: SearchInput):
     return binary_search(data.numbers.copy(), data.target)
